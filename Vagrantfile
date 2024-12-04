@@ -1,7 +1,7 @@
 MACHINES = {
   :"selinux" => {
               :box_name => "almalinux/9",
-              :box_version => "9.3.20231118",
+              :box_version => "9.4.20240805",
               :cpus => 2,
               :memory => 2048
             }
@@ -10,6 +10,7 @@ MACHINES = {
 Vagrant.configure("2") do |config|
   MACHINES.each do |boxname, boxconfig|
     config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vbguest.auto_update = false
     config.vm.define boxname do |box|
       box.vm.box = boxconfig[:box_name]
       box.vm.box_version = boxconfig[:box_version]
